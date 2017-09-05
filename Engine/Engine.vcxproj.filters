@@ -1,0 +1,224 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Quellcode">
+      <UniqueIdentifier>{bc6d1c06-2c58-43aa-b676-3b57c3bee053}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quellcode\Input">
+      <UniqueIdentifier>{5e6339af-93c1-414a-8a33-5b304661fb15}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quellcode\Math">
+      <UniqueIdentifier>{d0f6067c-ea31-407a-9b81-22c02df6a7b4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quellcode\Resources">
+      <UniqueIdentifier>{f50c1c44-feca-454e-ae89-30c614d77d1b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header">
+      <UniqueIdentifier>{5ef53626-dd88-496e-894b-37b41f254725}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Input">
+      <UniqueIdentifier>{6c5e9f82-caed-47d2-8ae8-f8577596e7e5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Math">
+      <UniqueIdentifier>{005d8107-f2a9-4df9-854b-d9aba76dafa3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Resources">
+      <UniqueIdentifier>{6537628e-987c-44d7-b086-e3fc8159d25b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Core">
+      <UniqueIdentifier>{062a1124-522d-4c85-9d15-9343e91d7e13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quellcode\Core">
+      <UniqueIdentifier>{3d549866-a86c-439c-bb49-79e90dea233e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Network">
+      <UniqueIdentifier>{cf30a1e5-e564-4021-a0dc-74ff1355bf90}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quellcode\Network">
+      <UniqueIdentifier>{47494234-7fa9-4d67-92b5-e21120d17b10}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quellcode\GameMechanics">
+      <UniqueIdentifier>{7f4449aa-0497-49bb-8ce3-ab45220d43af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\GameMechanics">
+      <UniqueIdentifier>{c3f302a6-4eb8-4136-bf77-7f696bd49fcd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header\Misc">
+      <UniqueIdentifier>{d9ee7eaf-5ef2-4c11-860e-1badb14fb636}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quellcode\Misc">
+      <UniqueIdentifier>{d4794586-7c96-49ea-97ec-ef8fdf060130}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="Input\Cursor.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Keyboard.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\KeyInfo.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Monitor.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Time.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\VideoMode.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Window.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\WindowHint.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\AxisAngle.cpp">
+      <Filter>Quellcode\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Matrix4.cpp">
+      <Filter>Quellcode\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Quaternion.cpp">
+      <Filter>Quellcode\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector2.cpp">
+      <Filter>Quellcode\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector4.cpp">
+      <Filter>Quellcode\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="Math\Vector3.cpp">
+      <Filter>Quellcode\Math</Filter>
+    </ClCompile>
+    <ClCompile Include="pch.cpp" />
+    <ClCompile Include="Network\Client.cpp">
+      <Filter>Quellcode\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Network.cpp">
+      <Filter>Quellcode\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\Server.cpp">
+      <Filter>Quellcode\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMechanics\Pipeline.cpp">
+      <Filter>Quellcode\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\Input.cpp">
+      <Filter>Quellcode\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="Network\ServerClient.cpp">
+      <Filter>Quellcode\Network</Filter>
+    </ClCompile>
+    <ClCompile Include="GameMechanics\GameObject.cpp" />
+    <ClCompile Include="GameMechanics\Scene.cpp" />
+    <ClCompile Include="Resources\Shader.cpp" />
+    <ClCompile Include="Resources\Program.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Input\Cursor.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keyboard.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\KeyInfo.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Keys.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Monitor.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Time.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\VideoMode.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\Window.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\WindowHint.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\AxisAngle.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Matrix4.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Quaternion.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector2.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector3.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\Vector4.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="pch.h" />
+    <ClInclude Include="SBE.h">
+      <Filter>Header</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Client.h">
+      <Filter>Header\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Network.h">
+      <Filter>Header\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\Server.h">
+      <Filter>Header\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\SBN.h">
+      <Filter>Header\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="Math\SBM.h">
+      <Filter>Header\Math</Filter>
+    </ClInclude>
+    <ClInclude Include="Resources\SBR.h">
+      <Filter>Header\Resources</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\SBMisc.h" />
+    <ClInclude Include="GameMechanics\Pipeline.h">
+      <Filter>Header\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMechanics\SBGM.h" />
+    <ClInclude Include="Input\Input.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Input\SBI.h">
+      <Filter>Header\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\Program.h">
+      <Filter>Header\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Misc\TmpHelper.h">
+      <Filter>Header\Misc</Filter>
+    </ClInclude>
+    <ClInclude Include="Network\ServerClient.h">
+      <Filter>Header\Network</Filter>
+    </ClInclude>
+    <ClInclude Include="GameMechanics\GameObject.h" />
+    <ClInclude Include="GameMechanics\Scene.h" />
+    <ClInclude Include="Resources\Shader.h" />
+    <ClInclude Include="Resources\Program.h" />
+    <ClInclude Include="Resources\Mesh.h" />
+    <ClInclude Include="Resources\ResourceLoader.h" />
+    <ClInclude Include="Resources\OBJ.h" />
+    <ClInclude Include="Resources\Loaders\OBJ_Loader.h" />
+    <ClInclude Include="Resources\Loaders\FileOperations.h" />
+    <ClInclude Include="Resources\Loaders\ShaderLoader.h" />
+    <ClInclude Include="Resources\Model.h" />
+    <ClInclude Include="Resources\Material.h" />
+    <ClInclude Include="Resources\Texture.h" />
+    <ClInclude Include="Resources\Model_i3fP3fN2fT.h" />
+    <ClInclude Include="Resources\Model_f3fPc3fN2sT.h" />
+  </ItemGroup>
+</Project>
