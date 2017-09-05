@@ -31,6 +31,17 @@
 *.out
 *.app
 
+#custom
+*.idb
+*.pdb
+*.exp
+*.tlog
+*.log
+*.iobj
+*.ipdb
+*.bsc
+*.ilk
+
 #directories
 /Content/
 /ExRef/GLEW/
