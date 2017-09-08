@@ -57,8 +57,9 @@ namespace SBR
 
 		static SBE_EXPORT void Write(char* path, char* buffer, int size)
 		{
-			std::ofstream f(path, std::ios::binary);
-			f.write(buffer, size);
+			FILE* file = fopen(path, "wb");
+			fwrite(buffer, 1, size, file);
+			fclose(file);
 		}
 	};
 }

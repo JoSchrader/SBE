@@ -16,14 +16,14 @@ namespace SBR
 			GLshort uvY; // 2byte
 		};
 
-		class SBE_EXPORT ModelPart : public  SBR::ModelPart
+		class SBE_EXPORT ModelPart
 		{
 		public:
 			CompressedVertex* triangles;
 			int amountOfTriangles;
 		};
 
-		class SBE_EXPORT Model : public  SBR::Model
+		class SBE_EXPORT Model
 		{
 			
 		};

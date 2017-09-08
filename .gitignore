@@ -43,6 +43,7 @@
 *.ilk
 
 #directories
+/Tools/
 /Content/
 /ExRef/GLEW/
 /ExRef/GLFW/

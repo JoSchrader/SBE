@@ -18,18 +18,11 @@
 
 #define GLEW_STATIC
 #define GLEW_NO_GLU
-#define GLFW_NO_GLU
+#define GLFW_DLL
 
-#include <GLEW\glew.h>
-#include <GLFW\glfw3.h>
+#include "..\GLEW\src\glew.h"
+#include "..\GLFW\src\glfw3.h"
 
-#include <libpng\png.h>
-
-#define XMD_H
-extern "C"
-{
-#include <libjpeg\jpeglib.h>
-}
 
 #pragma warning (disable : 4251)  //disables dll export warning when members dont have __declspec(dllexport)
 

@@ -15,21 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Client\ClientMain.cpp">
-      <Filter>Quelldateien</Filter>
-    </ClCompile>
-    <ClCompile Include="Client\ClientPCH.cpp">
+    <ClCompile Include="src\glew.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Client\ClientPCH.h">
+    <ClInclude Include="src\glew.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>Headerdateien</Filter>
-    </ClInclude>
-    <ClInclude Include="..\GLFW\src\glfw3.h">
+    <ClInclude Include="src\wglew.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

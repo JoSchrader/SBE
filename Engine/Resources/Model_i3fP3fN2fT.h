@@ -5,9 +5,50 @@ namespace SBR
 {
 	namespace i3fP3fN2fT
 	{
+		class SBE_EXPORT ModelHeader
+		{
+		public:
+			int magicNumber;
+			SBR::ModelType modelType;
+
+			int offsetName;
+			int amountOfParts;
+			int partsOffsetsOffset;
+
+			int amountOfPositions;
+			int positionDataOffset;
+
+			int amountOfNormals;
+			int normalDataOffset;
+
+			int amountOfUVs;
+			int uvDataOffset;
+		};
+
+		class SBE_EXPORT ModelPartHeader
+		{
+		public:
+			SBR::ModelType modelType;
+			int offsetName;
+			int offsetTexturePath;
+			int offsetMaterialPath;
+			int amountOfTriangles;
+			int offsetTriangleData;
+		};
+
 		class SBE_EXPORT MeshData
 		{
 		public:
+			MeshData()
+			{
+				this->positionData = nullptr;
+				this->normalData = nullptr;
+				this->uvData = nullptr;
+				this->amountOfPositions = -1;
+				this->amountOfNormals = -1;
+				this->amountOfUVs = -1;
+			}
+
 			SBM::Vector3* positionData;
 			SBM::Vector3* normalData;
 			SBM::Vector2* uvData;
@@ -31,193 +72,169 @@ namespace SBR
 			int texture3;
 		};
 
-		class SBE_EXPORT ModelPart : public  SBR::ModelPart
+		class SBE_EXPORT ModelPart
 		{
 		public:
 			TriangleIndexData* triangles;
 			int amountOfTriangles;
+			char* name;
 
+			ModelPart()
+			{
+				this->triangles = nullptr;
+				this->amountOfTriangles = -1;
+			}
+
+			// Returns needed Filesize in bytes
 			int GetSize()
 			{
 				int size = 0;
-				size += 4; //offset name
-				size += 4; //offset texturePath
-				size += 4; //offset materialPath
-				size += 4; //amount of triangles
-				size += 4; //offset triangle data
+				size += sizeof(ModelPartHeader);
 				size += (int)strlen(name) + 1;
-				size += (int)strlen(texturePath) + 1;
-				size += (int)strlen(materialPath) + 1;
 				size += sizeof(TriangleIndexData) * amountOfTriangles;
 				return size;
 			}
 
 			void Save(char* buffer)
 			{
-				int* offsetName = (int*)buffer;
-				int* offsetTexturePath = (int*)(buffer + 4);
-				int* offsetMaterialPath = (int*)(buffer + 8);
-				int* amountOfTriangles = (int*)(buffer + 12);
-				int* offsetTriangleData = (int*)(buffer + 16);
+				ModelPartHeader* modelPartHeader = (ModelPartHeader*)buffer;
+				char* curBufferPosition = buffer + sizeof(ModelPartHeader);
 
-				char* name = buffer + 20;
-				char* texturePath = name + strlen(this->name) + 1;
-				char* materialPath = texturePath + strlen(this->texturePath) + 1;
-				TriangleIndexData* triangleData = (TriangleIndexData*)(materialPath + strlen(this->materialPath) + 1);
+				modelPartHeader->modelType = SBR::ModelType::i3fP3fN2fT_ID;
 
+				//push name to buffer
+				strcpy(curBufferPosition, this->name);
+				modelPartHeader->offsetName = curBufferPosition - buffer;
+				curBufferPosition += strlen(this->name) + 1;
 
-				*offsetName = (int)(name - buffer);
-				*offsetTexturePath = (int)(texturePath - buffer);
-				*offsetMaterialPath = (int)(materialPath - buffer);
-				*amountOfTriangles = (int)(this->amountOfTriangles);
-				*offsetTriangleData = (int) ( ((char*)triangleData) - buffer);
-
-				strcpy(name, this->name);
-				strcpy(texturePath, this->texturePath);
-				strcpy(materialPath, this->materialPath);
-				memcpy(triangleData, this->triangles, sizeof(TriangleIndexData) * this->amountOfTriangles);
+				//push TriangleData
+				memcpy(curBufferPosition, this->triangles, sizeof(TriangleIndexData) * this->amountOfTriangles);
+				modelPartHeader->offsetTriangleData = curBufferPosition - buffer;
+				modelPartHeader->amountOfTriangles = this->amountOfTriangles;
 			}
 
+			//Returns
 			void Load(char* buffer)
 			{
-				int* offsetName = (int*)buffer;
-				int* offsetTexturePath = (int*)(buffer + 4);
-				int* offsetMaterialPath = (int*)(buffer + 8);
-				int* amountOfTriangles = (int*)(buffer + 12);
-				int* offsetTriangleData = (int*)(buffer + 16);
+				ModelPartHeader* modelPartHeader = (ModelPartHeader*)buffer;
 
-				this->name = buffer + *offsetName;
-				this->texturePath = buffer + *offsetTexturePath;
-				this->materialPath = buffer + *offsetMaterialPath;
-				this->amountOfTriangles = *amountOfTriangles;
-				this->triangles = (TriangleIndexData*)(buffer + *offsetTriangleData);
+				if (modelPartHeader->modelType != SBR::ModelType::i3fP3fN2fT_ID)
+				{
+					int k = 2;
+				}
+
+				this->name = buffer + modelPartHeader->offsetName;
+				this->amountOfTriangles = modelPartHeader->amountOfTriangles;
+				this->triangles = (TriangleIndexData*)(buffer + modelPartHeader->offsetTriangleData);
 			}
 		};
 
-		class SBE_EXPORT Model : public SBR::Model
+		class SBE_EXPORT Model
 		{
 		public:
-			MeshData* meshData;
+			MeshData meshData;
+			char* name;
+			SBR::i3fP3fN2fT::ModelPart* parts;
+			int amountOfParts;
+
+			Model()
+			{
+				this->amountOfParts = 0;
+				this->name = nullptr;
+				this->parts = nullptr;
+			}
 
 			void Save(char* buffer)
 			{
-				int* magicNumber = (int*)buffer;
-				int* offsetName = (int*)(buffer + 4);
-				int* amountOfParts = (int*)(buffer + 8);
-				int* partsOffsetsOffset = (int*)(buffer + 12);
+				ModelHeader* modelHeader = (ModelHeader*)buffer;
+				char* curBufferPointer = buffer + sizeof(ModelHeader);
 
-				int* amountOfPositions = (int*)(buffer + 16);
-				int* amountOfNormals = (int*)(buffer + 20);
-				int* amountOfUVs = (int*)(buffer + 24);
+				modelHeader->magicNumber = SBE_MODEL_MAGIC_BYTES;
+				modelHeader->modelType = SBR::ModelType::i3fP3fN2fT_ID;
 
-				int* positionDataOffset = (int*)(buffer + 28);
-				int* normalDataOffset = (int*)(buffer + 32);
-				int* uvDataOffset = (int*)(buffer + 36);
+				//Push Name
+				strcpy(curBufferPointer, this->name);
+				modelHeader->offsetName = curBufferPointer - buffer;
+				curBufferPointer += strlen(this->name) + 1;
 
-				char* name = buffer + 40;
-				int* partOffsets = (int*)(name + strlen(this->name) + 1);
+				//Push PartOffsets
+				modelHeader->amountOfParts = this->amountOfParts;
+				modelHeader->partsOffsetsOffset = curBufferPointer - buffer;
+				curBufferPointer += sizeof(int) * this->amountOfParts;
 
+				//Push Positions
+				modelHeader->amountOfPositions = this->meshData.amountOfPositions;
+				modelHeader->positionDataOffset = curBufferPointer - buffer;
+				memcpy(curBufferPointer, this->meshData.positionData, sizeof(SBM::Vector3)* this->meshData.amountOfPositions);
+				curBufferPointer += sizeof(SBM::Vector3)* this->meshData.amountOfPositions;
 
-				*magicNumber = 555;
-				*offsetName = (int)(name - buffer);
-				*amountOfParts = this->amountOfParts;
-				*partsOffsetsOffset = (int)(((char*)partOffsets) - buffer);
+				//Push Normals
+				modelHeader->amountOfNormals = this->meshData.amountOfNormals;
+				modelHeader->normalDataOffset = curBufferPointer - buffer;
+				memcpy(curBufferPointer, this->meshData.normalData, sizeof(SBM::Vector3) * this->meshData.amountOfNormals);
+				curBufferPointer += sizeof(SBM::Vector3)* this->meshData.amountOfNormals;
 
-				*amountOfPositions = this->meshData->amountOfPositions;
-				*amountOfNormals = this->meshData->amountOfNormals;
-				*amountOfUVs = this->meshData->amountOfUVs;
+				//Push UVs
+				modelHeader->amountOfUVs = this->meshData.amountOfUVs;
+				modelHeader->uvDataOffset = curBufferPointer - buffer; 
+				memcpy(curBufferPointer, this->meshData.uvData, sizeof(SBM::Vector2) * this->meshData.amountOfUVs);
+				curBufferPointer += sizeof(SBM::Vector2)* this->meshData.amountOfUVs;
 
-
-				strcpy(name, this->name);
-				char* currentPointer = (char*)(partOffsets + this->amountOfParts);
-
-				memcpy(currentPointer, this->meshData->positionData, sizeof(SBM::Vector3)*this->meshData->amountOfPositions);
-				*positionDataOffset = (int)(currentPointer - buffer);
-				currentPointer += sizeof(SBM::Vector3)*this->meshData->amountOfPositions;
-
-				memcpy(currentPointer, this->meshData->normalData, sizeof(SBM::Vector3)*this->meshData->amountOfNormals);
-				*normalDataOffset = (int)(currentPointer - buffer);
-				currentPointer += sizeof(SBM::Vector3)*this->meshData->amountOfNormals;
-
-				memcpy(currentPointer, this->meshData->uvData, sizeof(SBM::Vector3)*this->meshData->amountOfUVs);
-				*uvDataOffset = (int)(currentPointer - buffer);
-				currentPointer += sizeof(SBM::Vector2) * this->meshData->amountOfUVs;
-
+				int* partOffsets = (int*)(buffer + modelHeader->partsOffsetsOffset);
 				for (int i = 0; i < this->amountOfParts; i++)
 				{
-					partOffsets[i] = (int)(currentPointer - buffer);
-					this->parts[i]->Save(currentPointer);
-					currentPointer += this->parts[i]->GetSize();
+					partOffsets[i] = curBufferPointer - buffer;
+					this->parts[i].Save(curBufferPointer);
+					curBufferPointer += this->parts[i].GetSize();
 				}
 			}
 
-			void Load(char* buffer)
-			{
-				int* magicNumber = (int*)buffer;
-				int* offsetName = (int*)(buffer + 4);
-				int* amountOfParts = (int*)(buffer + 8);
-				int* partsOffsetsOffset = (int*)(buffer + 12);	
-				int* amountOfPositions = (int*)(buffer + 16);
-				int* amountOfNormals = (int*)(buffer + 20);
-				int* amountOfUVs = (int*)(buffer + 24);
+			int Load(char* buffer)
+			{				
+				ModelHeader* modelHeader = (ModelHeader*)buffer;
 
-				int* positionDataOffset = (int*)(buffer + 28);
-				int* normalDataOffset = (int*)(buffer + 32);
-				int* uvDataOffset = (int*)(buffer + 36);
+				if (modelHeader->magicNumber != SBE_MODEL_MAGIC_BYTES)
+					return -1;
 
-				char* name = buffer + 40;
+				if (modelHeader->modelType != SBR::ModelType::i3fP3fN2fT_ID)
+					return -1;
 
-				if (*magicNumber != 555)
-					return;
+				this->name = buffer + modelHeader->offsetName;
+				this->amountOfParts = modelHeader->amountOfParts;
 
-				this->name = name;
-				this->amountOfParts = *amountOfParts;
-				this->parts = (SBR::ModelPart**) malloc(sizeof(ModelPart*) * this->amountOfParts);
+				//this->parts = (SBR::ModelPart**) malloc(sizeof(ModelPart*) * this->amountOfParts);
 
-				this->meshData = new SBR::i3fP3fN2fT::MeshData();
-				this->meshData->amountOfPositions = *amountOfPositions;
-				this->meshData->amountOfNormals = *amountOfNormals;
-				this->meshData->amountOfUVs = *amountOfUVs;
-				this->meshData->positionData = (SBM::Vector3*) (buffer + *positionDataOffset);
-				this->meshData->normalData = (SBM::Vector3*) (buffer + *normalDataOffset);
-				this->meshData->uvData = (SBM::Vector2*) (buffer + *uvDataOffset);
+				this->meshData.amountOfPositions = modelHeader->amountOfPositions;
+				this->meshData.amountOfNormals = modelHeader->amountOfNormals;
+				this->meshData.amountOfUVs = modelHeader->amountOfUVs;
+				this->meshData.positionData = (SBM::Vector3*) (buffer + modelHeader->positionDataOffset);
+				this->meshData.normalData = (SBM::Vector3*) (buffer + modelHeader->normalDataOffset);
+				this->meshData.uvData = (SBM::Vector2*) (buffer + modelHeader->uvDataOffset);
 
-				int* partOffsets = (int*)(buffer + *partsOffsetsOffset);
+				int* partOffsets = (int*)(buffer + modelHeader->partsOffsetsOffset);
 
 				for (int i = 0; i < this->amountOfParts; i++)
 				{
 					char* partBuffer = buffer + partOffsets[i];
-					this->parts[i] = new SBR::i3fP3fN2fT::ModelPart();
-					this->parts[i]->Load(partBuffer);
+					//this->parts[i] = new SBR::i3fP3fN2fT::ModelPart();
+					//this->parts[i]->Load(partBuffer);
 				}
 			}
 
 			int GetSize()
 			{
 				int size = 0;
+				size += sizeof(ModelHeader);
+				size += (int)strlen(this->name) + 1; //length of name
+				size += 4 * this->amountOfParts;	 //parts offsets
 
-				size += 4; //magic identifier
-				size += 4; //offset Name
-				size += 4; //amount of parts
-				size += 4; //parts offsets offset
-				size += 4; //amountOfPositions
-				size += 4; //amountOfNormals
-				size += 4; //amountOfUVs
-				size += 4; //positionDataOffset
-				size += 4; //normalDataOffset
-				size += 4; //uvDataOffset
-				size += (int) strlen(this->name) + 1; //length of name
-				size += 4 * this->amountOfParts; //parts offsets
-
-				size += this->meshData->amountOfPositions * sizeof(SBM::Vector3); // space for position data
-				size += this->meshData->amountOfNormals * sizeof(SBM::Vector3); // space for normal data
-				size += this->meshData->amountOfUVs * sizeof(SBM::Vector2); // space for uv data
+				size += this->meshData.amountOfPositions * sizeof(SBM::Vector3); // space for position data
+				size += this->meshData.amountOfNormals * sizeof(SBM::Vector3); // space for normal data
+				size += this->meshData.amountOfUVs * sizeof(SBM::Vector2); // space for uv data
 
 				// size of parts
-				for (int i = 0; i < this->amountOfParts; i++)
-				{
-					size += this->parts[i]->GetSize();
-				}
+		//		for (int i = 0; i < this->amountOfParts; i++)
+//					size += this->parts[i]->GetSize();
 
 				return size;
 			}

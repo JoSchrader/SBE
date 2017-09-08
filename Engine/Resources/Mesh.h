@@ -109,7 +109,7 @@ namespace SBR
 		{
 			SBR::i3fP3fN2fT::Model* model = new SBR::i3fP3fN2fT::Model();
 
-			model->amountOfParts = 1;
+		/*	model->amountOfParts = 1;
 			model->parts = (ModelPart**) malloc(sizeof(ModelPart*) * 1);
 			model->name = "BlahBlahModelName";
 
@@ -128,7 +128,7 @@ namespace SBR
 			model->meshData->positionData = &this->positions[0];
 			model->meshData->uvData = &this->uvs[0];
 
-			model->parts[0] = part;
+			model->parts[0] = part;*/
 
 			return model;
 		}

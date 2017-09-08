@@ -28,7 +28,7 @@ void main()
 		len = strlen(buffer);
 		buffer[len] = 0;
 
-		std::cout << buffer << std::endl;
+		//std::cout << buffer << std::endl;
 		server.SendToAll(buffer, len+1);
 		
 	}
