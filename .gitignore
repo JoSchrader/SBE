@@ -50,4 +50,4 @@
 /ExRef/libjpeg/
 /ExRef/libpng/
 /ExRef/zlib/
-/.vs/
+*.vs*
