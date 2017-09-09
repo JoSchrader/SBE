@@ -171,7 +171,9 @@
     <ClCompile Include="Network\Server.cpp" />
     <ClCompile Include="Network\ServerClient.cpp" />
     <ClCompile Include="GameMechanics\Scene.cpp" />
+    <ClCompile Include="Resources\Model_f3fPc3fN2sT.cpp" />
     <ClCompile Include="Resources\Program.cpp" />
+    <ClCompile Include="Resources\VBO.cpp" />
     <ClCompile Include="Resources\Shader.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -186,7 +188,6 @@
     <ClInclude Include="Resources\Loaders\FileOperations.h" />
     <ClInclude Include="Resources\Loaders\ShaderLoader.h" />
     <ClInclude Include="Resources\Material.h" />
-    <ClInclude Include="Resources\Mesh.h" />
     <ClInclude Include="Resources\Model.h" />
     <ClInclude Include="Resources\Model_f3fPc3fN2sT.h" />
     <ClInclude Include="Resources\Model_i3fP3fN2fT.h" />
@@ -196,6 +197,8 @@
     <ClInclude Include="Resources\Program.h" />
     <ClInclude Include="Resources\Shader.h" />
     <ClInclude Include="Resources\Texture.h" />
+    <ClInclude Include="Resources\VAO.h" />
+    <ClInclude Include="Resources\VBO.h" />
     <ClInclude Include="SBE.h" />
     <ClInclude Include="Misc\Program.h" />
     <ClInclude Include="Misc\TmpHelper.h" />

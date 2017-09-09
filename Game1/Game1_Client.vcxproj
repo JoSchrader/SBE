@@ -70,22 +70,22 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\Client</IntDir>
+    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\Client\</IntDir>
     <SourcePath>C:\Engine\Engine;$(SourcePath)</SourcePath>
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\Client</IntDir>
+    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\Client\</IntDir>
     <SourcePath>C:\Engine\Engine;$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\Client</IntDir>
+    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\Client\</IntDir>
     <SourcePath>$(SourcePath)</SourcePath>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\Client</IntDir>
+    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\Client\</IntDir>
     <SourcePath>$(SourcePath)</SourcePath>
     <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
   </PropertyGroup>

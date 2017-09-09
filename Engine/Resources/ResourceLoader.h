@@ -10,6 +10,6 @@ namespace SBR
 	{
 	public:
 		static SBR::Shader* Shader(char* path) { return SBR::ShaderLoader::Load(path); }
-		static SBR::OBJ* OBJ(char* path) { return SBR::OBJ_Loader::Load(path); }
+		static SBR::i3fP3fN2fT::Model* OBJ(char* path) { return SBR::OBJ_Loader::Load(path); }
 	};
 }

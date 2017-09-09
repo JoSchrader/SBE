@@ -116,6 +116,8 @@
     <ClCompile Include="GameMechanics\Scene.cpp" />
     <ClCompile Include="Resources\Shader.cpp" />
     <ClCompile Include="Resources\Program.cpp" />
+    <ClCompile Include="Resources\Model_f3fPc3fN2sT.cpp" />
+    <ClCompile Include="Resources\VBO.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\Cursor.h">
@@ -209,7 +211,6 @@
     <ClInclude Include="GameMechanics\Scene.h" />
     <ClInclude Include="Resources\Shader.h" />
     <ClInclude Include="Resources\Program.h" />
-    <ClInclude Include="Resources\Mesh.h" />
     <ClInclude Include="Resources\ResourceLoader.h" />
     <ClInclude Include="Resources\OBJ.h" />
     <ClInclude Include="Resources\Loaders\OBJ_Loader.h" />
@@ -220,5 +221,7 @@
     <ClInclude Include="Resources\Texture.h" />
     <ClInclude Include="Resources\Model_i3fP3fN2fT.h" />
     <ClInclude Include="Resources\Model_f3fPc3fN2sT.h" />
+    <ClInclude Include="Resources\VAO.h" />
+    <ClInclude Include="Resources\VBO.h" />
   </ItemGroup>
 </Project>
