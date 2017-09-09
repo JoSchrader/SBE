@@ -62,7 +62,7 @@ namespace SBR
 			char* tmp = facestr;
 			while (*tmp != '\r' && *tmp != '\n' && *tmp != 0)
 			{
-				if (*tmp == ' ')
+				if (*tmp == ' ' && *(tmp+1) != 0)  //hack to ignore a space if its at the end of line
 					spacecount++;
 				if (*tmp == '/')
 					slashCount++;
@@ -100,7 +100,7 @@ namespace SBR
 			return (OBJ_FaceTypes)type;
 		}
 
-		static void ReadFace(std::vector<SBR::i3fP3fN2fT::TriangleIndexData>* triangleData, OBJ_FaceTypes faceType, char* text)
+		static void ReadFace(std::vector<SBR::i3fP3fN2fT::TriangleIndexData>* triangleData, OBJ_FaceTypes faceType, char* text, int amountOfPositions, int amountOfNormals, int amountOfUVs)
 		{
 			SBR::i3fP3fN2fT::TriangleIndexData triData(0);
 
@@ -114,12 +114,28 @@ namespace SBR
 					sscanf(text, "%i//%i %i//%i %i//%i", &triData.position1, &triData.normal1, &triData.position2, &triData.normal2, &triData.position3, &triData.normal3);
 				else if (faceType == OBJ_FaceTypes::TRI_PTN)
 					sscanf(text, "%i/%i/%i %i/%i/%i %i/%i/%i", &triData.position1, &triData.texture1, &triData.normal1, &triData.position2, &triData.texture2, &triData.normal2, &triData.position3, &triData.texture3, &triData.normal3);
+
+				if (triData.position1 < 0) triData.position1 = amountOfPositions + triData.position1;
+				if (triData.position2 < 0) triData.position2 = amountOfPositions + triData.position2;
+				if (triData.position3 < 0) triData.position3 = amountOfPositions + triData.position3;
+				if (triData.normal1 < 0) triData.normal1 = amountOfNormals + triData.normal1;
+				if (triData.normal2 < 0) triData.normal2 = amountOfNormals + triData.normal2;
+				if (triData.normal3 < 0) triData.normal3 = amountOfNormals + triData.normal3;
+				if (triData.texture1 < 0) triData.texture1 = amountOfUVs + triData.texture1;
+				if (triData.texture2 < 0) triData.texture2 = amountOfUVs + triData.texture2;
+				if (triData.texture3 < 0) triData.texture3 = amountOfUVs + triData.texture3;
+
+				if (triData.texture3 == 292850)
+				{
+					int i = 12;
+				}
+
 				triangleData->push_back(triData);
 			}
 
 			else if (faceType & OBJ_FaceTypes::QUAD_FLAG)
 			{
-				int pos4, texture4, normal4;
+				int pos4=0, texture4=0, normal4=0;
 				if (faceType == OBJ_FaceTypes::QUAD_P)
 					sscanf(text, "%i %i %i %i", &triData.position1, &triData.position2, &triData.position3, &pos4);
 				else if (faceType == OBJ_FaceTypes::QUAD_PT)
@@ -128,9 +144,27 @@ namespace SBR
 					sscanf(text, "%i//%i %i//%i %i//%i %i//%i", &triData.position1, &triData.normal1, &triData.position2, &triData.normal2, &triData.position3, &triData.normal3, &pos4, &normal4);
 				else if (faceType == OBJ_FaceTypes::QUAD_PTN)
 					sscanf(text, "%i/%i/%i %i/%i/%i %i/%i/%i %i/%i/%i", &triData.position1, &triData.texture1, &triData.normal1, &triData.position2, &triData.texture2, &triData.normal2, &triData.position3, &triData.texture3, &triData.normal3, &pos4, &texture4, &normal4);
-				triangleData->push_back(triData);
 
-				SBR::i3fP3fN2fT::TriangleIndexData triData2(triData.position3, triData.texture3, triData.normal3, pos4, texture4, normal4, triData.position1, triData.texture1, triData.normal1);
+				if (triData.position1 < 0) triData.position1 = amountOfPositions + triData.position1;
+				if (triData.position2 < 0) triData.position2 = amountOfPositions + triData.position2;
+				if (triData.position3 < 0) triData.position3 = amountOfPositions + triData.position3;
+				if (triData.normal1 < 0) triData.normal1 = amountOfNormals + triData.normal1;
+				if (triData.normal2 < 0) triData.normal2 = amountOfNormals + triData.normal2;
+				if (triData.normal3 < 0) triData.normal3 = amountOfNormals + triData.normal3;
+				if (triData.texture1 < 0) triData.texture1 = amountOfUVs + triData.texture1;
+				if (triData.texture2 < 0) triData.texture2 = amountOfUVs + triData.texture2;
+				if (triData.texture3 < 0) triData.texture3 = amountOfUVs + triData.texture3;
+				if (pos4 < 0) pos4 = amountOfPositions + pos4;
+				if (normal4 < 0) normal4 = amountOfNormals + normal4;
+				if (texture4 < 0) texture4 = amountOfUVs + texture4;
+
+				if (texture4 == 292850)
+				{
+					int i = 12;
+				}
+
+				triangleData->push_back(triData);
+				SBR::i3fP3fN2fT::TriangleIndexData triData2(triData.position3, triData.normal3, triData.texture3,  pos4, normal4, texture4,  triData.position1, triData.normal1, triData.texture1);
 				triangleData->push_back(triData2);
 			}
 			else
@@ -142,7 +176,6 @@ namespace SBR
 	public:
 		static SBR::i3fP3fN2fT::Model *Load(char* path)
 		{
-
 			if (!SBR::File::Exist(path))
 				return nullptr;
 
@@ -168,10 +201,8 @@ namespace SBR
 
 			char* cur = file;
 
+			int line = 1;
 			float x, y, z;
-
-			SBR::i3fP3fN2fT::TriangleIndexData triData;
-
 
 			cur = strtok(cur, "\r\n");
 
@@ -199,10 +230,12 @@ namespace SBR
 				{
 					cur += 2;
 
-					if (vertexIndexType == OBJ_FaceTypes::UNDEFINED)
-						vertexIndexType = GetFaceType(cur);
+					//only scan first face
+					//if (vertexIndexType == OBJ_FaceTypes::UNDEFINED)
+					vertexIndexType = GetFaceType(cur);
 
-					ReadFace(&curTriangleData, vertexIndexType, cur);
+					if(vertexIndexType != OBJ_FaceTypes::UNDEFINED)
+						ReadFace(&curTriangleData, vertexIndexType, cur, positions.size(), normals.size(), uvs.size());
 				}
 				else if (cur[0] == 'o' && cur[1] == ' ' || cur[0] == 'g' && cur[1] == ' ')
 				{
@@ -234,6 +267,7 @@ namespace SBR
 				}
 
 				cur = strtok(nullptr, "\r\n");
+				line++;
 			}
 
 			if (curTriangleData.size() > 0)

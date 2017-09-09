@@ -5,14 +5,13 @@
 void main()
 {	
 	
-	/*SBR::i3fP3fN2fT::Model* loadedOBJ = SBR::OBJ_Loader::Load("Content/Models/Predator_Solid_OBJ.obj");
+	/*SBR::i3fP3fN2fT::Model* loadedOBJ = SBR::OBJ_Loader::Load("Content/Models/r8_gt.obj");
 
 	SBR::f3fPc3fN2sT::Model* flat = new SBR::f3fPc3fN2sT::Model(loadedOBJ);
 
-	flat->SaveToFile("Content/Models/Predator_Solid_OBJ.sbm");*/
+	flat->SaveToFile("Content/Models/r8_gt.sbm");*/
 	
-	SBR::f3fPc3fN2sT::Model* flatLoaded = SBR::f3fPc3fN2sT::Model::LoadFromFile("Content/Models/Predator_Solid_OBJ.sbm", false);
-
+	SBR::f3fPc3fN2sT::Model* flatLoaded = SBR::f3fPc3fN2sT::Model::LoadFromFile("Content/Models/r8_gt.sbm", false);
 
 	SBR::f3fPc3fN2sT::ModelPart* merged = flatLoaded->MergeParts();
 
