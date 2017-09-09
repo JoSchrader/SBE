@@ -4,6 +4,14 @@
 #define _SCL_SECURE_NO_WARNINGS
 #define _CRT_SECURE_NO_WARNINGS
 
+
+
+#define GLEW_STATIC
+#define GLEW_NO_GLU
+
+#include "..\GLEW\src\glew.h"
+#include "..\GLFW\src\glfw3.h"
+
 #include <atomic>
 #include <vector>
 #include <winsock2.h>
@@ -13,15 +21,6 @@
 #include <fstream>
 #include <cstdio>
 #include <Windows.h>
-
-#include <intrin.h> // for debug assertion
-
-#define GLEW_STATIC
-#define GLEW_NO_GLU
-#define GLFW_DLL
-
-#include "..\GLEW\src\glew.h"
-#include "..\GLFW\src\glfw3.h"
 
 
 #pragma warning (disable : 4251)  //disables dll export warning when members dont have __declspec(dllexport)

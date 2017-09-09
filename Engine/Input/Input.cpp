@@ -110,15 +110,6 @@ GLvoid SBI::Input::DestroyWindow(SBI::Window* window)
 	{
 		SBI::Input::currentWindow = nullptr;
 	}
-
-	for (std::vector<Window*>::iterator it = SBI::Input::windows->begin(); it != SBI::Input::windows->end(); it++)
-	{
-		if ((*it)->glfwWindow == window->glfwWindow)
-		{
-			SBI::Input::windows->erase(it);
-			break;
-		}
-	}
 }
 
 GLvoid SBI::Input::Error_Callback(GLint error, const char* description)

@@ -29,7 +29,6 @@ void  SBR::f3fPc3fN2sT::ModelPart::Load(char* buffer, bool copyDynamicData)
 	this->name = buffer + header->nameOffset;
 	this->vertexes = (SBR::f3fPc3fN2sT::CompressedVertex*) (buffer + header->vertexDataOffset);
 
-
 	if (copyDynamicData)
 	{
 		this->dataIsContinous = false;
@@ -164,8 +163,10 @@ SBR::f3fPc3fN2sT::Model::~Model()
 
 	for (int i = 0; i < this->amountOfParts; i++)
 	{
-		delete (this->parts + i);
+		(this->parts + i)->~ModelPart();
 	}
+
+	free(this->parts);
 }
 
 int SBR::f3fPc3fN2sT::Model::GetSize()
