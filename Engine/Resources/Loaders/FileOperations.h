@@ -1,13 +1,14 @@
 #pragma once
-#include "..\..\pch.h"
+#include "..\..\SBE_Internal.h"
 #include <sys/stat.h>
+#include <fstream>
 
 namespace SBR
 {
 	class File
 	{
 	public:
-		static SBE_EXPORT bool Exist(char* path)
+		static SBE_API bool Exist(char* path)
 		{
 			struct stat st;
 			if (stat(path, &st) != 0)
@@ -17,7 +18,7 @@ namespace SBR
 			return true;
 		}
 
-		static SBE_EXPORT void Extension(char* path, char* result, int maxLen)
+		static SBE_API void Extension(char* path, char* result, int maxLen)
 		{
 			int len = (int)strlen(path);
 			int i = 0;
@@ -33,7 +34,7 @@ namespace SBR
 			strcpy_s(result, maxLen, &path[i]);
 		}
 
-		static SBE_EXPORT int Size(char* path)
+		static SBE_API int Size(char* path)
 		{
 			struct stat st;
 			if (stat(path, &st) != 0) {
@@ -43,7 +44,7 @@ namespace SBR
 		}
 
 		/// <summary>Caller is responsible to free returned pointer</summary>
-		static SBE_EXPORT char* Read(char* path, int* size)
+		static SBE_API char* Read(char* path, int* size)
 		{
 			std::ifstream t(path, std::ios::binary);
 			t.seekg(0, std::ios::end);
@@ -55,7 +56,7 @@ namespace SBR
 			return buffer;
 		}
 
-		static SBE_EXPORT void Write(char* path, char* buffer, int size)
+		static SBE_API void Write(char* path, char* buffer, int size)
 		{
 			FILE* file = fopen(path, "wb");
 			fwrite(buffer, 1, size, file);

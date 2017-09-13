@@ -10,3 +10,5 @@
 
 #include "VAO.h"
 #include "VBO.h"
+
+#include "Bitmap.h"
