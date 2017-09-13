@@ -70,26 +70,26 @@
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)tmp\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
     <TargetName>glfw3</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)tmp\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
     <TargetName>glfw3</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)tmp\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
     <TargetName>glfw3</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
-    <OutDir>$(SolutionDir)bin\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(ProjectDir)tmp\$(Platform)\$(Configuration)\</IntDir>
+    <OutDir>$(SolutionDir)bin\$(PlatformShortName)\$(Configuration)\</OutDir>
+    <IntDir>$(ProjectDir)tmp\$(PlatformShortName)\$(Configuration)\</IntDir>
     <TargetExt>.lib</TargetExt>
     <TargetName>glfw3</TargetName>
   </PropertyGroup>
@@ -100,6 +100,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WIN32</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
@@ -109,6 +111,8 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WIN32</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <MinimalRebuild>false</MinimalRebuild>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -120,6 +124,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WIN32</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -135,6 +140,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_WIN32</PreprocessorDefinitions>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -158,9 +164,9 @@
     <ClCompile Include="src\window.c" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="glfw3.h" />
+    <ClInclude Include="glfw3native.h" />
     <ClInclude Include="src\egl_context.h" />
-    <ClInclude Include="src\glfw3.h" />
-    <ClInclude Include="src\glfw3native.h" />
     <ClInclude Include="src\glfw_config.h" />
     <ClInclude Include="src\internal.h" />
     <ClInclude Include="src\wgl_context.h" />
