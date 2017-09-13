@@ -1,4 +1,4 @@
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 #include "VideoMode.h"
 
@@ -6,7 +6,7 @@ SBI::VideoMode::VideoMode()
 {
 }
 
-SBI::VideoMode::VideoMode(GLint width, GLint height, GLint redBits, GLint greenBits, GLint blueBits, GLint refreshRate)
+SBI::VideoMode::VideoMode(int width, int height, int redBits, int greenBits, int blueBits, int refreshRate)
 {
 	this->width = width;
 	this->height = height;
@@ -15,7 +15,6 @@ SBI::VideoMode::VideoMode(GLint width, GLint height, GLint redBits, GLint greenB
 	this->blueBits = blueBits;
 	this->refreshRate = refreshRate;
 }
-
 
 SBI::VideoMode::~VideoMode()
 {

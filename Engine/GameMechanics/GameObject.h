@@ -1,10 +1,12 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "..\Math\SBM.h"
+
+#include <vector>
 
 namespace SBGM
 {
-	class SBE_EXPORT GameObject
+	class SBE_API GameObject
 	{
 	public:
 		std::vector<GameObject*> childs;

@@ -1,12 +1,12 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 #include "Loaders\ShaderLoader.h"
 #include "Loaders\OBJ_Loader.h"
 
 namespace SBR
 {
-	class SBE_EXPORT Loader
+	class SBE_API Loader
 	{
 	public:
 		static SBR::Shader* Shader(char* path) { return SBR::ShaderLoader::Load(path); }

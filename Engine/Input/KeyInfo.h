@@ -1,17 +1,17 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "Keys.h"
 
 namespace SBI
 {
-	class SBE_EXPORT KeyInfo
+	class SBE_API KeyInfo
 	{
 	public:
 		Keys key;
-		GLboolean pressed;
-		GLboolean toDown;
-		GLboolean toUp;
-		GLfloat deltaTime;
+		bool pressed;
+		bool toDown;
+		bool toUp;
+		float deltaTime;
 
 		KeyInfo(void);
 		KeyInfo(Keys key);

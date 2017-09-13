@@ -1,7 +1,12 @@
 #pragma once
+#include "..\SBE_Internal.h"
+#include <winsock2.h>
+#include <atomic>
+#include <mutex>
+
 namespace SBN
 {
-	class SBE_EXPORT Client
+	class SBE_API Client
 	{
 	public:
 		SOCKET* _socket;

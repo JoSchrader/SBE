@@ -1,5 +1,5 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 #define _USE_MATH_DEFINES
 
@@ -8,7 +8,7 @@
 
 namespace SBM
 {
-	class SBE_EXPORT Matrix4
+	class SBE_API Matrix4
 	{
 		public:
 			float m[16];

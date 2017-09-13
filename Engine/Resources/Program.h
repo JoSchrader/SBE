@@ -1,12 +1,14 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include<stdarg.h>
+
+#include <vector>
 
 namespace SBR
 {
 	class Shader;
 
-	class SBE_EXPORT Program
+	class SBE_API Program
 	{
 	public:
 		GLint glid;

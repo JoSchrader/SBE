@@ -1,4 +1,4 @@
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "Vector2.h"
 
 using namespace SBM;

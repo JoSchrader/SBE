@@ -1,5 +1,6 @@
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "Pipeline.h"
+#include <GLEW\glew.h>
 
 SBGM::Pipeline::Pipeline(void)
 {
@@ -32,11 +33,11 @@ void SBGM::Pipeline::UpdateMatrices(unsigned int programId)
 	modelViewProjectionMatrix = projectionMatrix * viewMatrix * modelMatrix.back();
 	normalMatrix = modelMatrix.back().Inversed();
 
-	GLint pmodelMatrix = glGetUniformLocation(programId, "modelMatrix");
-	GLint pviewMatrix = glGetUniformLocation(programId, "viewMatrix");
-	GLint pmodelViewMatrix = glGetUniformLocation(programId, "modelViewMatrix");
-	GLint pmodelViewProjectionMatrix = glGetUniformLocation(programId, "modelViewProjectionMatrix");
-	GLint pnormalMatrix = glGetUniformLocation(programId, "normalMatrix");
+	int pmodelMatrix = glGetUniformLocation(programId, "modelMatrix");
+	int pviewMatrix = glGetUniformLocation(programId, "viewMatrix");
+	int pmodelViewMatrix = glGetUniformLocation(programId, "modelViewMatrix");
+	int pmodelViewProjectionMatrix = glGetUniformLocation(programId, "modelViewProjectionMatrix");
+	int pnormalMatrix = glGetUniformLocation(programId, "normalMatrix");
 
 	glUniformMatrix4fv(pmodelMatrix, 1, GL_FALSE, &modelMatrix.back().m[0]);
 	glUniformMatrix4fv(pviewMatrix, 1, GL_FALSE, &viewMatrix.m[0]);

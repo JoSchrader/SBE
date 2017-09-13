@@ -1,5 +1,5 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "Monitor.h"
 #include "WindowHint.h"
 
@@ -9,7 +9,7 @@ namespace SBI
 	class Cursor;
 	class Time;
 
-	class SBE_EXPORT Window
+	class SBE_API Window
 	{
 		friend class Input;
 

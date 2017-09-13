@@ -1,10 +1,10 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "Vector3.h"
 
 namespace SBM
 {
-	class SBE_EXPORT AxisAngle
+	class SBE_API AxisAngle
 	{
 		public:
 			Vector3 axis;

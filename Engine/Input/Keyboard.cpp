@@ -1,4 +1,4 @@
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "Keyboard.h"
 #include "Time.h"
 #include "Window.h"
@@ -178,7 +178,7 @@ SBI::KeyInfo SBI::Keyboard::GetKey(SBI::Keys key)
 	return SBI::Input::currentWindow->keyboard->infos[static_cast<int>(key)];
 }
 
-GLboolean SBI::Keyboard::GetKeyPressed(SBI::Keys key)
+bool SBI::Keyboard::GetKeyPressed(SBI::Keys key)
 {
 	return SBI::Input::currentWindow->keyboard->infos[static_cast<int>(key)].pressed;
 }

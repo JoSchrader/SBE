@@ -4,7 +4,7 @@
 
 namespace SBR
 {
-	class SBE_EXPORT ShaderLoader
+	class SBE_API ShaderLoader
 	{
 	public:
 		static SBR::Shader* Load(char* path)

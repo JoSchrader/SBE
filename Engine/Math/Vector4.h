@@ -1,9 +1,9 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 namespace SBM
 {
-	class SBE_EXPORT Vector4
+	class SBE_API Vector4
 	{
 	public:
 		float x, y, z, w;

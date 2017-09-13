@@ -1,4 +1,4 @@
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "Matrix4.h"
 using namespace SBM;
 

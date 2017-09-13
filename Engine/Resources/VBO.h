@@ -1,5 +1,6 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
+#include <GLEW\glew.h>
 
 namespace SBR
 {
@@ -9,7 +10,7 @@ namespace SBR
 		class Model;
 	}
 
-	class SBE_EXPORT VBO
+	class SBE_API VBO
 	{
 	public:
 		GLuint glid;

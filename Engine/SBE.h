@@ -1,5 +1,4 @@
 #pragma once
-#include "pch.h"
 
 #include "GameMechanics\SBGM.h"
 #include "Input\SBI.h"

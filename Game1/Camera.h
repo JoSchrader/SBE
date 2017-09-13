@@ -30,8 +30,8 @@ public:
 
 		this->position += move;
 
-		this->rotation = Quaternion::Euler((float)-cursor->moveY *0.001f, 0, 0) * this->rotation;
-		this->rotation = this->rotation * Quaternion::Euler(0, (float) cursor->moveX*0.001f, 0);
+		this->rotation = SBM::Quaternion::Euler((float)-cursor->moveY *0.001f, 0, 0) * this->rotation;
+		this->rotation = this->rotation *  SBM::Quaternion::Euler(0, (float) cursor->moveX*0.001f, 0);
 
 		pipe->viewMatrix = SBM::Matrix4::LookAt(position, position + forward, up);
 	}

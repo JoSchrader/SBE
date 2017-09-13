@@ -1,9 +1,9 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 namespace SBR
 {
-	class SBE_EXPORT Material
+	class SBE_API Material
 	{
 		char* name;
 

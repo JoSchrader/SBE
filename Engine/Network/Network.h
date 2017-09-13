@@ -1,5 +1,5 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 #define SBE_TCP_STREAM SOCK_STREAM
 #define SBE_UDP_STREAM SOCK_DGRAM
@@ -11,7 +11,7 @@ namespace SBN
 	class Network
 	{
 	public:
-		static SBE_EXPORT void Init();
-		static SBE_EXPORT void Cleanup();
+		static SBE_API void Init();
+		static SBE_API void Cleanup();
 	};
 }

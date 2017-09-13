@@ -1,26 +1,26 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 namespace SBI
 {
 	class  Window;
 
-	class SBE_EXPORT Cursor
+	class SBE_API Cursor
 	{
 	private:
 		Window* relatedWindow;
 
 	public:
-		GLdouble posX;
-		GLdouble posY;
-		GLdouble moveX;
-		GLdouble moveY;
-		GLint posXi;
-		GLint posYi;
+		double posX;
+		double posY;
+		double moveX;
+		double moveY;
+		int posXi;
+		int posYi;
 				
 		Cursor(Window* relatedWindow);
 		~Cursor();
 		
-		GLvoid Update();
+		void Update();
 	};
 }

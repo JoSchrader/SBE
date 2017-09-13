@@ -1,5 +1,5 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 #include "Program.h"
 
@@ -7,7 +7,7 @@ namespace SBR
 {
 	class VBO;
 
-	class SBE_EXPORT VAO
+	class SBE_API VAO
 	{
 	public:
 		GLuint glid;

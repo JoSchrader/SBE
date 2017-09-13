@@ -1,5 +1,7 @@
 #pragma once
-#include "Model.h"
+#include "..\Math\Vector3.h"
+#include "..\Math\Vector2.h"
+#include "ModelType.h"
 
 namespace SBR
 {
@@ -10,7 +12,7 @@ namespace SBR
 
 	namespace f3fPc3fN2sT
 	{
-		class SBE_EXPORT ModelHeader
+		class SBE_API ModelHeader
 		{
 		public:
 			int magicNumber;
@@ -20,7 +22,7 @@ namespace SBR
 			int partOffsetsOffset;
 		};
 
-		class SBE_EXPORT ModelPartHeader
+		class SBE_API ModelPartHeader
 		{
 		public:
 			SBR::ModelType modelType;
@@ -29,15 +31,15 @@ namespace SBR
 			int vertexDataOffset;
 		};
 
-		class SBE_EXPORT CompressedVertex
+		class SBE_API CompressedVertex
 		{
 		public:
-			GLfloat posX; // 4byte
-			GLfloat posY; // 4byte
-			GLfloat posZ; // 4byte
-			GLuint packedNormals; //4 byte
-			GLshort uvX; // 2byte
-			GLshort uvY; // 2byte
+			float posX; // 4byte
+			float posY; // 4byte
+			float posZ; // 4byte
+			unsigned int packedNormals; //4 byte
+			short uvX; // 2byte
+			short uvY; // 2byte
 
 			CompressedVertex(SBM::Vector3 pos, SBM::Vector3 normal, SBM::Vector2 uv)
 			{
@@ -51,12 +53,12 @@ namespace SBR
 				this->packedNormals = this->packedNormals | ((int)(normal.y * 1023) << 10); // map normalised normal to [0,1023] integer
 				this->packedNormals = this->packedNormals | ((int)(normal.z * 1023) << 0); // map normalised normal to [0,1023] integer
 
-				this->uvX = (GLshort)(uv.x * 65535); // map normalised uv to [0,65535]
-				this->uvY = (GLshort)(uv.y * 65535); // map normalised uv to [0,65535]
+				this->uvX = (short)(uv.x * 65535); // map normalised uv to [0,65535]
+				this->uvY = (short)(uv.y * 65535); // map normalised uv to [0,65535]
 			}
 		};
 
-		class SBE_EXPORT ModelPart
+		class SBE_API ModelPart
 		{
 		public:
 			CompressedVertex* vertexes;
@@ -73,7 +75,7 @@ namespace SBR
 			void Save(char* buffer);
 		};
 
-		class SBE_EXPORT Model
+		class SBE_API Model
 		{
 		public:
 			char* name;

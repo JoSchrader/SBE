@@ -1,10 +1,15 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
+#include <winsock2.h>
 #include "ServerClient.h"
+
+#include <vector>
+#include <atomic>
+#include <mutex>
 
 namespace SBN
 {
-	class SBE_EXPORT Server
+	class SBE_API Server
 	{
 	public:
 		SOCKET* _socket;

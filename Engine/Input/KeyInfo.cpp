@@ -1,4 +1,4 @@
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "KeyInfo.h"
 
 using namespace SBI;

@@ -1,4 +1,4 @@
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "VBO.h"
 #include "Model_f3fPc3fN2sT.h"
 

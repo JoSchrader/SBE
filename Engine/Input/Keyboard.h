@@ -1,19 +1,19 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "KeyInfo.h"
 
 namespace SBI
 {
 	class Window;
 
-	class SBE_EXPORT Keyboard
+	class SBE_API Keyboard
 	{
 	private:
 		Window* relatedWindow;
-		GLfloat time;
+		float time;
 
 	public:
-		GLfloat lastChanged[static_cast<int>(SBI::Keys::Last) + 1];
+		float lastChanged[static_cast<int>(SBI::Keys::Last) + 1];
 		KeyInfo infos[static_cast<int>(SBI::Keys::Last) + 1];
 
 		Keyboard(Window* relatedWindow);
@@ -23,6 +23,6 @@ namespace SBI
 		void UpdateKey(SBI::Keys index, int pressed);
 
 		static KeyInfo GetKey(SBI::Keys key);
-		static GLboolean GetKeyPressed(SBI::Keys key);
+		static bool GetKeyPressed(SBI::Keys key);
 	};
 }

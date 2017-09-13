@@ -1,13 +1,12 @@
 #pragma once
 
-#include "..\..\pch.h"
 #include "FileOperations.h"
 
 #include "..\OBJ.h"
 
 namespace SBR
 {
-	enum SBE_EXPORT OBJ_FaceTypes
+	enum SBE_API OBJ_FaceTypes
 	{
 		UNDEFINED = 0,
 
@@ -27,13 +26,13 @@ namespace SBR
 		QUAD_PTN = QUAD_FLAG | POS_FLAG | TEXTURE_FLAG | NORMAL_FLAG	// f 1/2/3 4/5/6 7/8/9 10/11/12		8
 	};
 
-	class SBE_EXPORT OBJ_Loader
+	class SBE_API OBJ_Loader
 	{
 	private:
 		static SBR::i3fP3fN2fT::ModelPart* ConstructModelPart(std::vector<SBR::i3fP3fN2fT::TriangleIndexData>* triangleData, char* name)
 		{
 			SBR::i3fP3fN2fT::ModelPart* part = new SBR::i3fP3fN2fT::ModelPart();
-			part->amountOfTriangles = triangleData->size();
+			part->amountOfTriangles = (int)triangleData->size();
 			part->dataIsContinous = false;
 
 			if (strlen(name) > 0)
@@ -235,7 +234,7 @@ namespace SBR
 					vertexIndexType = GetFaceType(cur);
 
 					if(vertexIndexType != OBJ_FaceTypes::UNDEFINED)
-						ReadFace(&curTriangleData, vertexIndexType, cur, positions.size(), normals.size(), uvs.size());
+						ReadFace(&curTriangleData, vertexIndexType, cur, (int)positions.size(), (int)normals.size(), (int)uvs.size());
 				}
 				else if (cur[0] == 'o' && cur[1] == ' ' || cur[0] == 'g' && cur[1] == ' ')
 				{
@@ -253,7 +252,7 @@ namespace SBR
 					while (*nextCRLF != '\n' && *nextCRLF != '\r')
 						nextCRLF++;
 
-					int nameLength = nextCRLF - cur;
+					int nameLength = (int)(nextCRLF - cur);
 					memcpy(curName, cur, nameLength * sizeof(char));
 					curName[nameLength] = 0;
 				}
@@ -278,19 +277,19 @@ namespace SBR
 				curTriangleData.clear();
 			}
 
-			model->amountOfParts = parts.size();
+			model->amountOfParts = (int)parts.size();
 			model->continousDynamicData = nullptr;
 			model->dataIsContinous = false;
 
-			model->meshData.amountOfPositions = positions.size();
+			model->meshData.amountOfPositions = (int)positions.size();
 			model->meshData.positionData = (SBM::Vector3*) malloc(sizeof(SBM::Vector3)* positions.size());
 			memcpy(model->meshData.positionData, &positions[0], sizeof(SBM::Vector3)* positions.size());
 
-			model->meshData.amountOfNormals = normals.size();
+			model->meshData.amountOfNormals = (int)normals.size();
 			model->meshData.normalData = (SBM::Vector3*) malloc(sizeof(SBM::Vector3)* normals.size());
 			memcpy(model->meshData.normalData, &normals[0], sizeof(SBM::Vector3)* normals.size());
 
-			model->meshData.amountOfUVs = uvs.size();
+			model->meshData.amountOfUVs = (int)uvs.size();
 			model->meshData.uvData = (SBM::Vector2*) malloc(sizeof(SBM::Vector2)* uvs.size());
 			memcpy(model->meshData.uvData, &uvs[0], sizeof(SBM::Vector2)* uvs.size());
 

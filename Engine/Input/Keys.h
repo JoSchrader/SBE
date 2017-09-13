@@ -1,9 +1,9 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 namespace SBI
 {
-	enum class SBE_EXPORT Keys : int
+	enum class SBE_API Keys : int
 	{
 		Unknown = 0,
 		A = 1,

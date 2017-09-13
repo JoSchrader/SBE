@@ -1,8 +1,10 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "Model_f3fPc3fN2sT.h"
 #include "Model_i3fP3fN2fT.h"
 #include "Loaders\FileOperations.h"
+
+#include <vector>
 
 SBR::f3fPc3fN2sT::ModelPart::ModelPart()
 {
@@ -51,7 +53,7 @@ int SBR::f3fPc3fN2sT::ModelPart::GetSize()
 {
 	int size = 0;
 	size += sizeof(SBR::f3fPc3fN2sT::ModelPartHeader);
-	size += strlen(name) + 1;
+	size += (int)strlen(name) + 1;
 	size += sizeof(SBR::f3fPc3fN2sT::CompressedVertex) * this->amountOfVertexes;
 	return size;
 }
@@ -66,11 +68,11 @@ void SBR::f3fPc3fN2sT::ModelPart::Save(char* buffer)
 	char* curBufferPointer = buffer + sizeof(SBR::f3fPc3fN2sT::ModelPartHeader);
 
 	strcpy(curBufferPointer, this->name);
-	header->nameOffset = curBufferPointer - buffer;
+	header->nameOffset = (int)(curBufferPointer - buffer);
 	curBufferPointer += strlen(this->name) + 1;
 
 	memcpy(curBufferPointer, this->vertexes, sizeof(SBR::f3fPc3fN2sT::CompressedVertex) * this->amountOfVertexes);
-	header->vertexDataOffset = curBufferPointer - buffer;
+	header->vertexDataOffset = (int)(curBufferPointer - buffer);
 	curBufferPointer += sizeof(SBR::f3fPc3fN2sT::CompressedVertex) * this->amountOfVertexes;
 }
 
@@ -173,7 +175,7 @@ int SBR::f3fPc3fN2sT::Model::GetSize()
 {
 	int size = 0;
 	size += sizeof(SBR::f3fPc3fN2sT::ModelHeader);
-	size += strlen(this->name) + 1;
+	size += (int)strlen(this->name) + 1;
 	size += sizeof(int) * this->amountOfParts;
 	for (int i = 0; i < this->amountOfParts; i++)
 	{
@@ -263,17 +265,17 @@ void SBR::f3fPc3fN2sT::Model::SaveToBuffer(char* buffer)
 	char* curBufferPointer = buffer + sizeof(SBR::f3fPc3fN2sT::ModelHeader);
 
 	strcpy(curBufferPointer, this->name);
-	modelHeader->nameOffset = curBufferPointer - buffer;
+	modelHeader->nameOffset = (int)(curBufferPointer - buffer);
 	curBufferPointer += strlen(this->name) + 1;
 
 	int* partOffsets = (int*)curBufferPointer;
-	modelHeader->partOffsetsOffset = curBufferPointer - buffer;
+	modelHeader->partOffsetsOffset = (int)(curBufferPointer - buffer);
 	curBufferPointer += sizeof(int) * this->amountOfParts;
 
 	for (int i = 0; i < this->amountOfParts; i++)
 	{
 		this->parts[i].Save(curBufferPointer);
-		partOffsets[i] = curBufferPointer - buffer;
+		partOffsets[i] = (int)(curBufferPointer - buffer);
 		curBufferPointer += this->parts[i].GetSize();
 	}
 }

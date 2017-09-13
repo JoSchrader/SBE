@@ -1,16 +1,17 @@
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
+#include <winsock2.h>
 #include "Network.h"
 
 void SBN::Network::Init()
 {
 	WSADATA wsaData;
 	if (WSAStartup(MAKEWORD(1, 1), &wsaData) != 0) {
-		fprintf(stderr, "WSAStartup failed.\n");
+		//WSAStartup failed
 		exit(1);
 	}
 }
 
-SBE_EXPORT void SBN::Network::Cleanup()
+SBE_API void SBN::Network::Cleanup()
 {
 	WSACleanup();
 }

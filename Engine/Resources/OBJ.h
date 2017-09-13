@@ -1,5 +1,5 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "..\Math\SBM.h"
 
 namespace SBR

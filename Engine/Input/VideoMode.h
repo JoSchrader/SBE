@@ -1,21 +1,21 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 namespace SBI
 {
-	class SBE_EXPORT VideoMode
+	class SBE_API VideoMode
 	{
 	public:
-		GLint width;
-		GLint height;
-		GLint redBits;
-		GLint greenBits;
-		GLint blueBits;
-		GLint refreshRate;
-		
+		int width;
+		int height;
+		int redBits;
+		int greenBits;
+		int blueBits;
+		int refreshRate;
+
 	public:
 		VideoMode();
-		VideoMode(GLint width, GLint height,GLint redBits,GLint greenBits,GLint blueBits,GLint refreshRate);
+		VideoMode(int width, int height, int redBits, int greenBits, int blueBits, int refreshRate);
 		~VideoMode();
 	};
 }

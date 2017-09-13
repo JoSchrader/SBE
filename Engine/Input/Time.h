@@ -1,9 +1,10 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
+#include "GLEW\glew.h"
 
 namespace SBI
 {
-	class SBE_EXPORT Time
+	class SBE_API Time
 	{
 	public:
 		GLfloat ellapsedTime;

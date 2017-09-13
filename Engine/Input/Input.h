@@ -1,5 +1,9 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
+#include <GLEW\glew.h>
+#include <GLFW\glfw3.h>
+
+#include <vector>
 
 namespace SBI
 {
@@ -7,7 +11,7 @@ namespace SBI
 	class Window;
 	class WindowHint;
 
-	class SBE_EXPORT Input
+	class SBE_API Input
 	{
 	public:
 		static std::vector<Monitor*> *monitors;

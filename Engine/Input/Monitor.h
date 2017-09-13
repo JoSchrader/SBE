@@ -1,10 +1,14 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "VideoMode.h"
+#include <GLEW\glew.h>
+#include <GLFW\glfw3.h>
+
+#include <vector>
 
 namespace SBI
 {
-	class SBE_EXPORT Monitor
+	class SBE_API Monitor
 	{
 	public:
 		GLFWmonitor* glfwMonitor;

@@ -1,12 +1,12 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 #include "..\Math\SBM.h"
 #include <vector>
 
 
 namespace SBGM
 {
-	class SBE_EXPORT Pipeline
+	class SBE_API Pipeline
 	{
 	public:
 		std::vector<SBM::Matrix4> modelMatrix;

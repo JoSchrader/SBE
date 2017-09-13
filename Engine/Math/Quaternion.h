@@ -1,5 +1,5 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
 
 #define _USE_MATH_DEFINES
 
@@ -10,7 +10,7 @@
 
 namespace SBM
 {
-	class SBE_EXPORT Quaternion
+	class SBE_API Quaternion
 	{
 	public:
 		float x,y,z,w;

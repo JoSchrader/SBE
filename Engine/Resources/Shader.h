@@ -1,9 +1,11 @@
 #pragma once
-#include "..\pch.h"
+#include "..\SBE_Internal.h"
+#include <GLEW\glew.h>
+#include <string.h>
 
 namespace SBR
 {
-	enum SBE_EXPORT ShaderType
+	enum SBE_API ShaderType
 	{
 		VERTEX_SHADER = GL_VERTEX_SHADER,
 		TESS_CONTROL_SHADER = GL_TESS_CONTROL_SHADER,
@@ -14,7 +16,7 @@ namespace SBR
 		UNDEFINED_SHADER = -1
 	};
 
-	class SBE_EXPORT Shader
+	class SBE_API Shader
 	{
 	public:
 		GLint glid;
@@ -39,13 +41,6 @@ namespace SBR
 			{
 				glDeleteShader(glid);
 				glid = -1;
-
-				GLint logSize = 0;
-				glGetShaderiv(glid, GL_INFO_LOG_LENGTH, &logSize); 
-				char* errorLog = (char*) malloc( sizeof(char) * logSize);
-				glGetShaderInfoLog(glid, logSize, &logSize, &errorLog[0]);
-				printf(errorLog);
-				free(errorLog);
 			}
 		}
 
