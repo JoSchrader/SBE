@@ -93,7 +93,6 @@
     <ClCompile Include="Math\Vector3.cpp">
       <Filter>Quellcode\Math</Filter>
     </ClCompile>
-    <ClCompile Include="pch.cpp" />
     <ClCompile Include="Network\Client.cpp">
       <Filter>Quellcode\Network</Filter>
     </ClCompile>
@@ -118,6 +117,8 @@
     <ClCompile Include="Resources\Program.cpp" />
     <ClCompile Include="Resources\Model_f3fPc3fN2sT.cpp" />
     <ClCompile Include="Resources\VBO.cpp" />
+    <ClCompile Include="Resources\Model_i3fP3fN2fT.cpp" />
+    <ClCompile Include="Resources\BitmapHeaders.h" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Input\Cursor.h">
@@ -165,7 +166,6 @@
     <ClInclude Include="Math\Vector4.h">
       <Filter>Header\Math</Filter>
     </ClInclude>
-    <ClInclude Include="pch.h" />
     <ClInclude Include="SBE.h">
       <Filter>Header</Filter>
     </ClInclude>
@@ -198,12 +198,6 @@
     <ClInclude Include="Input\SBI.h">
       <Filter>Header\Input</Filter>
     </ClInclude>
-    <ClInclude Include="Misc\Program.h">
-      <Filter>Header\Misc</Filter>
-    </ClInclude>
-    <ClInclude Include="Misc\TmpHelper.h">
-      <Filter>Header\Misc</Filter>
-    </ClInclude>
     <ClInclude Include="Network\ServerClient.h">
       <Filter>Header\Network</Filter>
     </ClInclude>
@@ -216,12 +210,14 @@
     <ClInclude Include="Resources\Loaders\OBJ_Loader.h" />
     <ClInclude Include="Resources\Loaders\FileOperations.h" />
     <ClInclude Include="Resources\Loaders\ShaderLoader.h" />
-    <ClInclude Include="Resources\Model.h" />
     <ClInclude Include="Resources\Material.h" />
     <ClInclude Include="Resources\Texture.h" />
     <ClInclude Include="Resources\Model_i3fP3fN2fT.h" />
     <ClInclude Include="Resources\Model_f3fPc3fN2sT.h" />
     <ClInclude Include="Resources\VAO.h" />
     <ClInclude Include="Resources\VBO.h" />
+    <ClInclude Include="Resources\ModelType.h" />
+    <ClInclude Include="Resources\Bitmap.h" />
+    <ClInclude Include="SBE_Internal.h" />
   </ItemGroup>
 </Project>

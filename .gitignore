@@ -43,6 +43,7 @@
 *.ilk
 
 #directories
+/External_Tools/
 /Tools/
 /Content/
 /ExRef/GLEW/
