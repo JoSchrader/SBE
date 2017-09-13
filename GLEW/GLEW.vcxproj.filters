@@ -15,15 +15,15 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="src\glew.c">
+    <ClCompile Include="glew.c">
       <Filter>Quelldateien</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="src\glew.h">
+    <ClInclude Include="glew.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
-    <ClInclude Include="src\wglew.h">
+    <ClInclude Include="wglew.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>
